@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/min30"
+            android:layout_width="wrap_content"
+            android:layout_height="60sp"
+            android:layout_weight="1"
+            android:text="@string/_30min"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox
+            android:id="@+id/min40"
+            android:layout_width="wrap_content"
+            android:layout_height="60sp"
+            android:layout_weight="1"
+            android:text="@string/_40min"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox
+            android:id="@+id/min45"
+            android:layout_width="wrap_content"
+            android:layout_height="60sp"
+            android:layout_weight="1"
+            android:text="@string/_45min"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox
+            android:id="@+id/min60"
+            android:layout_width="wrap_content"
+            android:layout_height="60sp"
+            android:layout_weight="1"
+            android:text="@string/_60min"
+            android:onClick="onCheckboxClicked"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">fishfeed</string>
+    <string name="_30min">30min</string>
+    <string name="_40min">40min</string>
+    <string name="_45min">45min</string>
+    <string name="_60min">60min</string>
+</resources>
