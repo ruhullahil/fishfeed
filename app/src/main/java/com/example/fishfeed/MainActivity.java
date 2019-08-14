@@ -1,16 +1,22 @@
 package com.example.fishfeed;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private LinearLayout lr;
+    private LinearLayout lr ,nx;
     private CheckBox min30,min40,min45,min60;
     private int value;
+    private Button setValue;
+    private TextView statstr, timeSelect;
 
+   // @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
         min40 = findViewById(R.id.min40);
         min45 = findViewById(R.id.min45);
         min60 = findViewById(R.id.min60);
+        nx = findViewById(R.id._ly2);
+        statstr = findViewById(R.id.fixdtext);
+        timeSelect = findViewById(R.id._setText);
+        setValue = findViewById(R.id.setvalue);
+        setValue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeSelect.setText(Integer.toString(value));
+            }
+        });
+
+
 
 
 

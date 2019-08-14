@@ -4,4 +4,7 @@
     <string name="_40min">40min</string>
     <string name="_45min">45min</string>
     <string name="_60min">60min</string>
+    <string name="time_duration">time duration :</string>
+    <string name="set">set</string>
+    <string name="_30">30</string>
 </resources>
