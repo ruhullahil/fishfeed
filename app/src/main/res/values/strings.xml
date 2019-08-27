@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">fishfeed</string>
-    <string name="_30min">30min</string>
-    <string name="_40min">40min</string>
-    <string name="_45min">45min</string>
-    <string name="_60min">60min</string>
+    <string name="_30min">1 hour</string>
+    <string name="_40min">6 hour</string>
+    <string name="_45min">12 hour</string>
+    <string name="_60min">24 hour</string>
     <string name="time_duration">time duration :</string>
     <string name="set">set</string>
-    <string name="_30">30</string>
+    <string name="_30">1</string>
 </resources>
