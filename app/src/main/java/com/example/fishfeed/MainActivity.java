@@ -19,14 +19,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     private LinearLayout lr ,nx;
     private CheckBox min30,min40,min45,min60;
     private String value;
     private Button setValue , feed ;
-    private TextView statstr, timeSelect , time;
-    private DatabaseReference mDatabase;
+    private TextView statstr, timeSelect , timeView;
+    private DatabaseReference mDatabase ,db;
     private time t1;
+    private  String set_time;
 
    // @SuppressLint("WrongViewCast")
     @Override
@@ -42,38 +47,60 @@ public class MainActivity extends AppCompatActivity {
         statstr = findViewById(R.id.fixdtext);
         timeSelect = findViewById(R.id._setText);
         setValue = findViewById(R.id.setvalue);
-        time = findViewById(R.id.timeview);
+        timeView = findViewById(R.id.timeview);
         feed = findViewById(R.id.button);
-        mDatabase = FirebaseDatabase.getInstance().getReference("time");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseDatabase.getInstance().getReference("time");
 
 
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        db.addValueEventListener(new ValueEventListener() {
             public time tt;
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                  for(DataSnapshot snp : snapshot.getChildren()) {
                       tt = snp.getValue(time.class);
                  }
-                 timeSelect.setText(tt.duration);
+                 value = tt.duration;
+                 set_time = tt.set_time;
+                 timeSelect.setText(value);
+                 timeView.setText(set_time);
 
 
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Context context = getApplicationContext();
+                CharSequence text = databaseError.getMessage();
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         });
+
+
 
         setValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timeSelect.setText(value);
-                t1 = new time(value);
-                mDatabase.child("1").setValue(t1);
+                timeView.setText(set_time);
+                t1 = new time(value,set_time);
+                mDatabase.child("time").child("1").setValue(t1);
 
             }
         });
 
-
+     feed.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             set_time= new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+             timeSelect.setText(value);
+             timeView.setText(set_time);
+             t1 = new time(value,set_time);
+             mDatabase.child("time").child("1").setValue(t1);
+         }
+     });
 
 
 
