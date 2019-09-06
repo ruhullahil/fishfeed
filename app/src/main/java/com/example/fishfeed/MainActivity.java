@@ -2,6 +2,7 @@ package com.example.fishfeed;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout lr ,nx;
     private CheckBox min30,min40,min45,min60;
     private String value;
-    private Button setValue;
-    private TextView statstr, timeSelect;
+    private Button setValue , feed ;
+    private TextView statstr, timeSelect , time;
     private DatabaseReference mDatabase;
     private time t1;
 
@@ -41,15 +42,20 @@ public class MainActivity extends AppCompatActivity {
         statstr = findViewById(R.id.fixdtext);
         timeSelect = findViewById(R.id._setText);
         setValue = findViewById(R.id.setvalue);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        time = findViewById(R.id.timeview);
+        feed = findViewById(R.id.button);
+        mDatabase = FirebaseDatabase.getInstance().getReference("time");
 
 
         mDatabase.addValueEventListener(new ValueEventListener() {
-            private  String val;
+            public time tt;
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                 val = snapshot.child("value").toString();
-                 timeSelect.setText(val);
+                 for(DataSnapshot snp : snapshot.getChildren()) {
+                      tt = snp.getValue(time.class);
+                 }
+                 timeSelect.setText(tt.duration);
+
 
             }
             @Override
@@ -61,10 +67,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 timeSelect.setText(value);
-                // Write a message to the database
-               // t1= new time("time",value);
-
-                mDatabase.setValue(value);
+                t1 = new time(value);
+                mDatabase.child("1").setValue(t1);
 
             }
         });
