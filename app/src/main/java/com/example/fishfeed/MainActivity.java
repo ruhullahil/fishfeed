@@ -95,10 +95,22 @@ public class MainActivity extends AppCompatActivity {
          @Override
          public void onClick(View v) {
              set_time= new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+             String st = set_time.substring(0,2);
+             int date = Integer.parseInt(st);
+             int sum = Integer.parseInt(value);
+             sum = (sum + date)%24 ;
+            String  st1 = Integer.toString(sum);
+            String Newtime = set_time.replace(st,st1);
              timeSelect.setText(value);
              timeView.setText(set_time);
              t1 = new time(value,set_time);
+             String mode = "1";
+             Sub_set sub = new Sub_set(Newtime,mode);
+
+
              mDatabase.child("time").child("1").setValue(t1);
+             mDatabase.child("mode").setValue(sub);
+
          }
      });
 
